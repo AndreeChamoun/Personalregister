@@ -21,8 +21,8 @@ internal class Program
                 Console.Write("Namn: "); // Ber användaren att ange namn på den anställde
                 var namn = Console.ReadLine(); // Läser in namnet som text
 
-                Console.Write("Lön: "); 
-                if (decimal.TryParse(Console.ReadLine(), out decimal lön)) // Försöker att läsa in lönen som decimal. Out används för att skicka tillbaka värdet till variabeln lön. TryParse konverterar sträng till decimal och returnerar true om det lyckas.
+                Console.Write("Lön: ");
+                if (decimal.TryParse(Console.ReadLine().Replace(".", ","), out decimal lön)) // Försöker att läsa in lönen som decimal. Out används för att skicka tillbaka värdet till variabeln lön. TryParse konverterar sträng till decimal och returnerar true om det lyckas. Jag vill också kunna använda , och .
                 {
                     register.Add(namn, lön); // Lägger till den anställde i registret
                 }
