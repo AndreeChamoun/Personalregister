@@ -37,7 +37,7 @@ internal class Program
             }
             else if (val == "3")
             {
-                break;
+                break; // Avslutar programmet
             }
             else
             {
