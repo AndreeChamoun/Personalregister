@@ -68,10 +68,32 @@ class PersonalRegister
         anställda.Add(new Anställd(namn, lön)); // Skapar en ny anställd och lägger till i listan
     }
 
-    public void SkrivUt() //Skriver ut alla anställda i konsolen
+    public void SkrivUt()
     {
+        if (anställda.Count == 0) // Kontrollerar om listan är tom och skriver ut att det inte finns några anställda
+        {
+            Console.WriteLine("Inga anställda i registret.\n");
+            return;
+        }
+
         Console.WriteLine("\nPersonalregister:");
-        foreach (var a in anställda) // Loopar igenom alla anställda i listan
-            Console.WriteLine($"Namn: {a.Namn}, Lön: {a.Lön} kr");
+        for (int i = 0; i < anställda.Count; i++) // Loopar igenom alla anställda i listan
+        {
+            Console.WriteLine($"{i + 1}. {anställda[i].Namn}"); // Skriver ut alla anställda med index
+        }
+
+        Console.Write("Välj anställd för att visa detaljer");
+        string input = Console.ReadLine();
+
+        if (int.TryParse(input, out int index) && index >= 1 && index <= anställda.Count) // Kontrollerar om input är ett giltigt heltal och inom intervallet för anställda
+        {
+            var a = anställda[index - 1]; // Hämtar den anställde baserat på index
+            Console.WriteLine($"\nDetaljer:\nNamn: {a.Namn}\nLön: {a.Lön} kr\n"); // Skriver ut detaljer om den anställde
+        }
+        else if (!string.IsNullOrEmpty(input)) // Om input inte är tom eller null
+        {
+            Console.WriteLine("Ogiltigt val.\n"); // Skriver ut att valet är ogiltigt
+        }
     }
+
 }
